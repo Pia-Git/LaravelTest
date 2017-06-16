@@ -65,6 +65,14 @@
         </style>
     </head>
     <body>
+    	<div>
+    	<b>Tasks:</b><br>
+    		<ul>
+    			@foreach($tasks as $task)
+    				<li>{{ $task->body }}</li>
+    			@endforeach
+    		</ul>
+    	</div>
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
