@@ -22,7 +22,32 @@
 
 Route::get('/', 'PostController@index');
 
+Route::get('/posts/create', 'PostController@create');
+
+Route::post('/posts', 'PostController@store');
+
 Route::get('/posts/{post}', 'PostController@show');
+
+Route::post('/posts/{post}/comments', 'CommentController@store');
+
+
+/* Posts Info (Basic for Controller)
+
+GET /posts
+
+GET /posts/create
+
+POST /posts
+
+GET /posts/{id}/edit
+
+GET /posts/{id}
+
+PATCH /posts/{id}
+
+DELETE /posts/{id}
+
+ */
 
 //controller => PostsController
 //Eloquent model => Post
