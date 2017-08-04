@@ -8,7 +8,7 @@ class Comment extends Model
 {
 
 	//mass assignment protection
-	protected $fillable = ['body', 'post_id'];
+	protected $fillable = ['user_id', 'body', 'post_id'];
 	
     public function post()
     {

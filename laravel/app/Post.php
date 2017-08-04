@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
 	//mass assignment protection
-    protected $fillable = ['title', 'body'];
+    protected $fillable = ['title', 'body', 'user_id'];
     
     public function comments()
     {
@@ -21,12 +21,13 @@ class Post extends Model
     
     public function addComment($body){
     	
-    	/*Comment::create([
+    	Comment::create([
     			'body' => $body,
-    			'post_id' => $this->id
-    	]);*/
+    			'post_id' => $this->id,
+    			'user_id' => auth()->id
+    	]);
     	
-    	$this->comments()->create(compact('body'));
+    	//$this->comments()->create(compact('body'));
     	
     }
 }

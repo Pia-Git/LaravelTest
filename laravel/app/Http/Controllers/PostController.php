@@ -8,7 +8,12 @@ use App\Post;
 
 class PostController extends Controller
 {
-	// /posts
+	//must sign in to create a post
+	public function __construct()
+	{
+		$this->middleware('auth')->except(['index','show']);
+	}
+	
     public function index()
     {
     	$posts = Post::latest()->get();
@@ -57,7 +62,11 @@ class PostController extends Controller
     			'body' => 'required'
     	]);
     	
-    	Post::create(request(['title', 'body']));
+    	Post::create(request([
+    			'title' => request('title'), 
+    			'body' => request('body'),
+    			'user_id' => auth()->id()
+    	]));
     	
     	// and then redirect to home page
     	return redirect('/');
