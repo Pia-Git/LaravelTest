@@ -11,6 +11,7 @@ class PostController extends Controller
 	//must sign in to create a post
 	public function __construct()
 	{
+		//only for logged in users
 		$this->middleware('auth')->except(['index','show']);
 	}
 	
@@ -62,11 +63,15 @@ class PostController extends Controller
     			'body' => 'required'
     	]);
     	
-    	Post::create(request([
+    	auth()->user()->publish(
+    		new Post(request(['title', 'body']))	
+    	);
+    	
+    	/*Post::create([
     			'title' => request('title'), 
     			'body' => request('body'),
     			'user_id' => auth()->id()
-    	]));
+    	]);*/
     	
     	// and then redirect to home page
     	return redirect('/');
