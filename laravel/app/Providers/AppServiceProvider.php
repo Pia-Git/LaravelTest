@@ -15,6 +15,13 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
     	Schema::defaultStringLength(191);
+    	
+    	//Variable $archives sind auf jeder Seite vorhanden, wo die Sidebar geladen wird!
+    	view()->composer('layouts.sidebar', function($view){
+    		
+    		$view->with('archives', \App\Post::archives());
+    		
+    	});
     }
 
     /**
@@ -24,6 +31,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        //for example Singleton Classes
+        /*$this->app->singleton('App\Billing\Stripe', function(){
+        	return new \App\Billing\Stripe(config('services.stripe.secret'));
+        });*/
     }
 }
