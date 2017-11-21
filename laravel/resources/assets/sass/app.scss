@@ -176,3 +176,10 @@ h6, .h6 {
 .blog-footer p:last-child {
   margin-bottom: 0;
 }
+
+#flash-message{
+	position:absolute;
+	z-index:10;
+	bottom:20px;
+	right:20px;
+}

@@ -62,4 +62,11 @@ class Post extends Model
     		->toArray();
     	
     }
+    
+    public function tags(){
+    	
+    	//many to many relationship
+    	return $this->belongsToMany(Tag::class);
+    	
+    }
 }

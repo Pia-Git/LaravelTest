@@ -19,6 +19,9 @@ class PostController extends Controller
 	
     public function index(Posts $posts/*DI*/)
     {
+    	
+    	//return session('message');
+    	
     	$posts = $posts->all();
     	//$posts = (new \App\Repositories\Posts)->all();
     	
@@ -79,6 +82,8 @@ class PostController extends Controller
     	auth()->user()->publish(
     		new Post(request(['title', 'body']))	
     	);
+    	
+    	session()->flash('message', 'Your post has now been published.');
     	
     	/*Post::create([
     			'title' => request('title'), 
