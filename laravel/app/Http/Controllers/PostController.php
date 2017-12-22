@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Post;
+use App\Events\ThreadCreated;
 use App\Repositories\Posts;
 use Carbon\Carbon;
 
@@ -84,6 +85,8 @@ class PostController extends Controller
     	);
     	
     	session()->flash('message', 'Your post has now been published.');
+    	
+    	//event(new ThreadCreated(['name'=>'Some New Thread']));
     	
     	/*Post::create([
     			'title' => request('title'), 
